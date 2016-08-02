@@ -1,0 +1,24 @@
+#include "layer.h"                // abstract base
+
+#include "datastream.h"           // to pass data to neural net
+
+#include "cat.h"                  // shape related layers
+#include "cast.h"
+#include "tail.h"
+#include "tailcast.h"
+
+#include "stack.h"                // composite / container layers
+#include "join.h"
+
+#include "ff.h"                   // layers that do computation
+#include "recurrent.h"
+#include "lstm.h"
+#include "recursive.h"
+
+#include "smax_xent.h"            // loss layers
+#include "cf_smax_xent.h"
+#include "sqerr.h"
+
+#include "proj.h"                 // lookup table
+
+#include "timewise.h"
