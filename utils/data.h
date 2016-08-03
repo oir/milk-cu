@@ -22,6 +22,8 @@ void paired_shuffle(std::vector<Matrix<xpu>> v,
   }
 }
 
+#if MSHADOW_USE_CUDA
+
 std::vector<Data<gpu>> to_data(const Matrix<cpu>& X, uint batch_size=1) {
   uint N = X.size(0);
   uint last_batch_size = N % batch_size;
@@ -203,6 +205,8 @@ void batch_seq_no_label(std::vector<Data<gpu>>* Xb,
     (*Xb)[i].batch_size = bs;
   }
 }
+
+#endif
 
 } // end namespace milk
 

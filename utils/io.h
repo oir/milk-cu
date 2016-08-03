@@ -65,31 +65,10 @@ std::ostream& operator<<(std::ostream& s, const Matrix<cpu>& m) {
   return s;
 }
 
-std::ostream& operator<<(std::ostream& s, const Vector<gpu>& v) {
-  VectorContainer<cpu> v_(v.shape_);
-  Copy(v_, v);
-  s << v_;
-  return s;
-}
-
-std::ostream& operator<<(std::ostream& s, const Matrix<gpu>& m) {
-  MatrixContainer<cpu> m_(m.shape_);
-  Copy(m_, m);
-  s << m_;
-  return s;
-}
-
 std::istream& operator>>(std::istream& s, milk::Matrix<cpu>& m) {
   for (uint i=0; i<m.size(0); i++)
     for (uint j=0; j<m.size(1); j++)
       s >> m[i][j];
-  return s;
-}
-
-std::istream& operator>>(std::istream& s, milk::Matrix<gpu>& m) {
-  MatrixContainer<cpu> m_(m.shape_);
-  s >> m_;
-  Copy(m, m_);
   return s;
 }
 
@@ -109,6 +88,29 @@ void read_table(std::string fname, Matrix<cpu>* X) {
   }
 }
 
+#if MSHADOW_USE_CUDA
+
+std::ostream& operator<<(std::ostream& s, const Vector<gpu>& v) {
+  VectorContainer<cpu> v_(v.shape_);
+  Copy(v_, v);
+  s << v_;
+  return s;
+}
+
+std::ostream& operator<<(std::ostream& s, const Matrix<gpu>& m) {
+  MatrixContainer<cpu> m_(m.shape_);
+  Copy(m_, m);
+  s << m_;
+  return s;
+}
+
+std::istream& operator>>(std::istream& s, milk::Matrix<gpu>& m) {
+  MatrixContainer<cpu> m_(m.shape_);
+  s >> m_;
+  Copy(m, m_);
+  return s;
+}
+
 void load_wv_table(std::string fname, uint d, Matrix<gpu>* W,
                    std::unordered_map<std::string,uint>& w2i) {
   std::string line;
@@ -126,6 +128,8 @@ void load_wv_table(std::string fname, uint d, Matrix<gpu>* W,
     }
   }
 }
+
+#endif
 
 } // end namespace milk
 
