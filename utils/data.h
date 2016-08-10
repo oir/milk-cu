@@ -1,17 +1,21 @@
 #ifndef MILK_UTILS_DATA_H
 #define MILK_UTILS_DATA_H
 
+#include <random>
+
 namespace milk {
 
 template <typename xpu>
 void paired_shuffle(std::vector<Matrix<xpu>> v,
                     std::vector<uint> *perm = nullptr) {
+  std::default_random_engine gen;
+
   if (perm) {
     *perm = std::vector<uint>(v[0].size(0));
     std::iota(perm->begin(), perm->end(), 0); // 0 .. N-1
   }
   for (uint i=v[0].size(0)-1; i>0; i--) {
-    uint j = (rand() % i);
+    uint j = std::uniform_int_distribution<int>(0,i)(gen);
     for (auto m : v) {
       VectorContainer<xpu> tmp(m[0].shape_);
       Copy(tmp, m[i]);
