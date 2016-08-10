@@ -86,7 +86,7 @@ nn->forward();
 you can do
 ```C++
 using namespace milk::layer;
-ff<gpu> layer1(30), layer2(40), layer3(50); // this are actual ff objects
+ff<gpu> layer1(30), layer2(40), layer3(50); // these are actual ff objects
 layer2.x.connect_from(layer1.h);
 layer3.x.connect_from(layer2.h);
 for (ff<gpu>* l : {&layer1, &layer2, &layer3})
