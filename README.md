@@ -2,6 +2,8 @@
 
 Milk is a small GPU library for neural nets with a focus on more NLP oriented stuff such as recurrent and recursive nets. Based on [mshadow](https://github.com/dmlc/mshadow). It's main goal is to unify my own research code so it is easier to transfer knowledge and models between different research projects.
 
+You can find a guide [here](https://github.com/oir/milk-cu/blob/master/guide/guide.md).
+
 Feel free to ask questions: oirsoy [a] cs [o] cornell [o] edu.
 
 ## Some examples
@@ -50,6 +52,12 @@ Or a deep (three-layer) rectifier recursive net (Irsoy & Cardie, NIPS2014, `exam
                           recursive(50, 2, nonlin::relu()) >>
                           recursive(50, 2, nonlin::relu()) >>
     ff(5,nonlin::id()) >> top;
+
+## Todo (at a high level)
+
+* Add a tree LSTM model
+* Add budding trees
+* Add a recursive net example with dependency trees instead of constituency trees.
 
 ## License
 

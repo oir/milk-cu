@@ -95,6 +95,8 @@ for (ff<gpu>* l : {&layer1, &layer2, &layer3})
 
 and it should achieve the same effect with no use of the factory namespace functions or any container layer. Every attribute is public to hack into and do things manually.
 
+Above conventions with container layers and operator overloads are what I found to be easier when working with commonly used layers and combination styles.
+
 # Sequences and Structures (aka recurrent and recursive)
 
 TODO.
