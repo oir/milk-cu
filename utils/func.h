@@ -84,6 +84,9 @@ struct IsPositive {
   MSHADOW_XINLINE static Real Map(Real a) { return (a > 0.); }
 };
 
+struct IsNonnegative {
+    MSHADOW_XINLINE static Real Map(Real a) { return (a >= 0.); }
+};
 
 template <typename xpu>
 Real sum(Vector<xpu> m) {

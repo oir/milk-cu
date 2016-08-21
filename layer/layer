@@ -15,6 +15,8 @@
 #include "lstm.h"
 #include "recursive.h"
 
+#include "drop.h"                 // regularizers
+
 #include "smax_xent.h"            // loss layers
 #include "cf_smax_xent.h"
 #include "sqerr.h"
